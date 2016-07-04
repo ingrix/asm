@@ -9,3 +9,7 @@ http://docs.cs.up.ac.za/programming/asm/derick_tut/ - another tutorial on assemb
 https://www.cs.uaf.edu/courses/cs301/2014-fall/notes/pointer-arithmetic/ - outlines pointer arithmetic in C and assembly, useful for understanding how assembly handles pointers/values
 http://www.dreamincode.net/forums/topic/285550-nasm-linux-getting-command-line-parameters/ - working with command line parameters in assembly
 http://unixwiz.net/techtips/x86-jumps.html - quick reference for x86 jump instructions
+
+x86-64 ABI references: http://www.x86-64.org/documentation.html (specification of registers for parameter passing etc...)
+GAS assembly examples: http://cs.lmu.edu/~ray/notes/gasexamples/
+NASM assembly examples: https://www.csee.umbc.edu/portal/help/nasm/sample_64.shtml
