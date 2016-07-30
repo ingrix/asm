@@ -26,11 +26,15 @@ tv: .asciz "test\n"
 
 .section .text
 _start:
-  movq %rsp, %rdi
-  callq print_val
-  movq %rax,%rdi
+  #movq %rsp, %rdi
+  movq $12,%rax # brk syscall
+  movq $0,%rdi # 0 in rdi specifies just getting the current brk
+  syscall # execute call, current brk will be in %rax
+  movq %rax,%rdi # move brk to %rdi for printing
+  callq print_val # call print function
+  movq %rax,%rdi # %rax contains number read, move to rdi for exit syscall
   # 64 bit calling convention
-  movq $60,%rax
+  movq $60,%rax # exit syscall
   syscall
   #movq %rax,%rbx
   #movq $0x01,%rax
@@ -59,11 +63,11 @@ print_val:
 
 char_loop: # loop beginning
   movq %rax,%rdx # Move the current value to rdx
-  andq $0x0F,%rdx # Strip out all but the last four bits for character value
-  cmp $10,%rdx # determine if value is greater than 10, will change the offset we need
-  jl lt10
-  #jmp lt10
-#gt10:
+  andq $0x0F,%rdx
+  cmp $10,%rdx
+  jge gt10
+  jmp lt10
+gt10:
   #subq $10,%rbx
   #addq $'A',%rbx
   addq $55,%rdx # skips the non-alnum characters between '9' and 'A', same as '7'
