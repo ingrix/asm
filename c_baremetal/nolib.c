@@ -1,21 +1,16 @@
 #include <asm/unistd.h>
+#include <asm/types.h>
 
-#define _syscall1(ret_type, name, arg_type, arg_name) \
-  ret_type syscall_##name(arg_type arg_name) {          \
-    ret_type r;                                       \
-    __asm__ volatile (                                \
-        "movl %1, %%eax\n\t"                            \
-        "movl %2, %%edi\n\t"                            \
-        "syscall\n\t"                                 \
-        "movq %%rax, %0\n\t"                            \
-        : "=r" (r)                                    \
-        : "r" (__NR_##name), "r" (arg_name)           \
-        : "%rax", "%rdi" );                           \
-        return r; \
-  }
+#include "syscall_x86-64.h"
+
 
 _syscall1(long, exit, int, status);
+_syscall3(long, read, int, fd, void *, buf, int, len);
+_syscall3(long, write, int, fd, void *, buf, int, len);
 
 extern void _start() {
+  char buf[64];
+  long n = syscall_read(0, buf, 64);
+  syscall_write(1, buf, n);
   syscall_exit(42);
 }

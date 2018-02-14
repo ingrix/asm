@@ -1,6 +1,5 @@
 nolib: nolib.o
-	$(CC) $@ -nostdlib -nostartfiles -nodefaultlibs $<
+	$(CC) -g -o $@ -nostdlib -nostartfiles -nodefaultlibs $<
 
 %.o: %.c
-	$(CC) -c -S -o $@.S -nostdlib -nostartfiles -nodefaultlibs $<
-	$(CC) -c -o $@ -nostdlib -nostartfiles -nodefaultlibs $<
+	$(CC) -g -c -o $@ -nostdlib -nostartfiles -nodefaultlibs $<
