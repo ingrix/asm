@@ -1,6 +1,7 @@
 # ASM
 
-These are programs that I have written while teaching myself assembly language.
+Assembly tools.  Some of these are for working with low-level components of the
+operating system, and some I wrote while teaching myself assembly language.
 
 ## Programming Guides
 

@@ -1,0 +1,15 @@
+TOOLCHAIN=armv6-linux-gnueabi-
+
+CC:=$(TOOLCHAIN)gcc
+AS:=$(TOOLCHAIN)as
+LD:=$(TOOLCHAIN)ld
+AR:=$(TOOLCHAIN)ar
+RANLIB:=$(TOOLCHAIN)ranlib
+
+CFLAGS=-marm -g
+
+nolib_arm: nolib_arm.o
+	$(CC) $(CFLAGS) -o $@ -nostdlib -nostartfiles -nodefaultlibs $<
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ -nostdlib -nostartfiles -nodefaultlibs $<
