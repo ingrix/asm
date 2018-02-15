@@ -1,6 +1,9 @@
 #ifndef __SYSCALL_X86_64_H__
 #define __SYSCALL_X86_64_H__
 
+#include <asm/unistd.h>
+#include <asm/types.h>
+
 #define _syscall1(ret_type, name, arg_type, arg_name)   \
   ret_type syscall_##name(arg_type arg_name) {          \
     __u64 r;                                            \

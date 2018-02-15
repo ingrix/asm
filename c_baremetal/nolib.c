@@ -1,6 +1,3 @@
-#include <asm/unistd.h>
-#include <asm/types.h>
-
 #include "syscall_x86-64.h"
 
 
